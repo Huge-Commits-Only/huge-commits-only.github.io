@@ -48,6 +48,7 @@ h1 span{background:linear-gradient(90deg,var(--c1),var(--c2) 45%,var(--c3));-web
   border:1px solid color-mix(in srgb,var(--accent) 24%,var(--line));background:var(--panel);box-shadow:var(--shadow);position:relative;overflow:hidden}
 .project::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(520px 340px at 100% 0%,color-mix(in srgb,var(--accent2) 16%,transparent),transparent 70%)}
+.project>*{min-width:0}
 .media{width:100%;height:auto;display:block;border-radius:16px;background:#000;position:relative}
 .body{position:relative}
 .kicker{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
