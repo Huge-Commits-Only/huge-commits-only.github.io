@@ -40,5 +40,5 @@ h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;margin-bottom:24px}
 .checks b{display:block;color:var(--text)}
 .note{margin-top:20px;color:var(--dim)}
 footer{text-align:center;padding:72px 16px 48px;color:var(--dim);font-size:15px}footer img{border-radius:10px;margin-bottom:10px}.dim{opacity:.7;margin-top:4px}
-@media (max-width:760px){.project{grid-template-columns:1fr}.nav nav{gap:14px}.nav nav a:nth-child(-n+3){display:none}}
+@media (max-width:760px){.project{grid-template-columns:1fr}.nav nav{gap:14px}.nav nav a:nth-child(-n+4){display:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
