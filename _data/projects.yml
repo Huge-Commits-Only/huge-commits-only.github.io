@@ -36,8 +36,8 @@
   icon: assets/projects/go-app-template.svg
   video: assets/projects/go-app-template.mp4
   poster: assets/projects/go-app-template.jpg
-  width: 1040
-  height: 586
+  width: 900
+  height: 506
   alt: "Kroki CI szablonu od pull requestu przez testy i skany do podpisanego obrazu"
   accent: "#00c6ff"
   accent2: "#7f00ff"
