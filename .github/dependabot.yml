@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "19:00"
+      timezone: "Europe/Warsaw"
+    commit-message:
+      prefix: "deps: "
+    groups:
+      actions:
+        patterns: ["*"]

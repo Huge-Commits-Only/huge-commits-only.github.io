@@ -1,111 +1,61 @@
-<!doctype html>
-<html lang="pl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
-<meta name="referrer" content="no-referrer">
-<title>Huge Commits Only — aplikacje budowane z AI</title>
-<meta name="description" content="Aplikacje budowane z AI. Jeden pomysł, jeden porządny PR, jeden squash na main. Self-hosted na Raspberry Pi, za darmo, z bezpieczeństwem dużych projektów open source.">
-<meta property="og:title" content="Huge Commits Only">
-<meta property="og:description" content="Aplikacje budowane z AI. Jeden pomysł, jeden porządny PR, jeden squash na main.">
-<meta property="og:image" content="https://huge-commits-only.github.io/assets/og.png">
-<meta property="og:url" content="https://huge-commits-only.github.io/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="color-scheme" content="dark">
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<a class="skip" href="#projekty">Przejdź do projektów</a>
+---
+layout: default
+---
+<section class="hero">
+  <p class="eyebrow">Vibecoding · self-hosted · open source</p>
+  <h1>Aplikacje budowane z&nbsp;AI.<br><span>Porządnie.</span></h1>
+  <p class="lead">Jeden pomysł, jeden porządny pull request, jeden commit na <code>main</code>. Wszystko działa w&nbsp;domu na Raspberry Pi, nic nie kosztuje i&nbsp;przechodzi te same kontrole bezpieczeństwa co duże projekty open source.</p>
+  <div class="cta">
+    <a class="btn primary" href="#projekty">Zobacz projekty</a>
+    <a class="btn" href="{{ site.roadmap }}">Roadmapa</a>
+    <a class="btn" href="https://github.com/Huge-Commits-Only/go-app-template/generate">Zacznij własny projekt</a>
+  </div>
+  <ul class="stats" aria-label="W liczbach">
+    <li><b>0 zł</b><span>miesięcznie, tylko darmowe funkcje</span></li>
+    <li><b>1&nbsp;PR, 1&nbsp;commit</b><span>historia czyta się jak lista funkcji</span></li>
+    <li><b>100%</b><span>akcji CI przypiętych do SHA</span></li>
+    <li><b>SLSA</b><span>podpisane obrazy i binarki</span></li>
+  </ul>
+</section>
 
-<header class="nav">
-  <a class="brand" href="#top"><img src="assets/logo.svg" alt="" width="36" height="36">Huge Commits Only</a>
-  <nav aria-label="Nawigacja">
-    <a href="#projekty">Projekty</a>
-    <a href="#praca">Jak pracujemy</a>
-    <a href="#bezpieczenstwo">Bezpieczeństwo</a>
-    <a href="https://github.com/orgs/Huge-Commits-Only/projects/1">Roadmapa</a>
-    <a href="https://github.com/Huge-Commits-Only">GitHub</a>
-  </nav>
-</header>
-
-<main id="top">
-  <section class="hero">
-    <p class="eyebrow">vibecoding · self-hosted · open source</p>
-    <h1>Aplikacje budowane z AI.<br><span>Porządnie.</span></h1>
-    <p class="lead">Jeden pomysł, jeden porządny PR, jeden squash na <code>main</code>. Wszystko działa w domu na Raspberry Pi, kosztuje 0 zł i przechodzi te same kontrole bezpieczeństwa co duże projekty open source.</p>
-    <div class="cta">
-      <a class="btn primary" href="#projekty">Zobacz projekty</a>
-      <a class="btn" href="https://github.com/orgs/Huge-Commits-Only/projects/1">Roadmapa</a>
-      <a class="btn" href="https://github.com/Huge-Commits-Only/go-app-template/generate">Zacznij własny projekt</a>
+<section id="projekty" aria-labelledby="projekty-h">
+  <h2 id="projekty-h">Projekty</h2>
+  {% for p in site.data.projects %}
+  <article class="project project--{{ p.slug }}" aria-labelledby="p-{{ p.slug }}">
+    <video class="media" src="{{ p.video | relative_url }}" poster="{{ p.poster | relative_url }}" width="{{ p.width }}" height="{{ p.height }}" autoplay muted loop playsinline controls preload="metadata" aria-label="{{ p.alt }}">
+      <img src="{{ p.poster | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}">
+    </video>
+    <div class="body">
+      <p class="kicker"><img src="{{ p.icon | relative_url }}" alt="" width="28" height="28">{{ p.tagline }}</p>
+      <h3 id="p-{{ p.slug }}">{{ p.name }}</h3>
+      <p>{{ p.description }}</p>
+      <ul class="ticks">{% for point in p.points %}<li>{{ point }}</li>{% endfor %}</ul>
+      <ul class="tags" aria-label="Technologie">{% for t in p.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+      <p class="links">{% for l in p.links %}<a href="{{ l.url }}">{{ l.label }}</a>{% endfor %}</p>
     </div>
-    <ul class="stats" aria-label="W liczbach">
-      <li><b>0 zł</b><span>miesięcznie, tylko darmowe funkcje</span></li>
-      <li><b>1 PR = 1 commit</b><span>historia czyta się jak lista funkcji</span></li>
-      <li><b>100%</b><span>akcji CI przypiętych do SHA</span></li>
-      <li><b>SLSA</b><span>podpisane obrazy i binarki</span></li>
-    </ul>
-  </section>
+  </article>
+  {% endfor %}
+</section>
 
-  <section id="projekty">
-    <h2>Projekty</h2>
-    <article class="project">
-      <img src="assets/duet.gif" alt="Duet: telefon dołącza przez kod QR, oboje odpowiadają, projektor pokazuje „Zgodni!”" width="1040" height="559" loading="lazy">
-      <div>
-        <h3>💞 Duet</h3>
-        <p>Gry i quizy dla par. Projektor pokazuje grę, telefony są pilotami — wejście przez kod QR, bez aplikacji i kont.</p>
-        <ul class="ticks">
-          <li>13 trybów, od „Co wolisz” po rysowanie palcem</li>
-          <li>do czterech par przy jednym ekranie</li>
-          <li>jeden plik w Go, ok. 25 MB RAM, podpisane wydania</li>
-        </ul>
-        <p class="links"><a href="https://github.com/Huge-Commits-Only/duet">Repozytorium</a><a href="https://github.com/Huge-Commits-Only/duet/releases">Wydania</a><a href="https://github.com/Huge-Commits-Only/duet/issues/new?template=pytanie.yml">Zaproponuj pytanie</a></p>
-      </div>
-    </article>
-    <article class="project">
-      <img src="assets/go-app-template.gif" alt="go-app-template: kroki CI od pull requestu do podpisanego obrazu" width="900" height="506" loading="lazy">
-      <div>
-        <h3>🧨 go-app-template</h3>
-        <p>Nowy projekt w minutę: aplikacja w Go z testami, obraz dla Raspberry Pi i komplet CI — na zielono od pierwszego commita.</p>
-        <ul class="ticks">
-          <li>testy, lint, CodeQL, govulncheck i Trivy</li>
-          <li>podpisane obrazy (SLSA) i SBOM</li>
-          <li>Dependabot, który sam scala łatki po zielonych testach</li>
-        </ul>
-        <p class="links"><a href="https://github.com/Huge-Commits-Only/go-app-template/generate">Use this template</a><a href="https://github.com/Huge-Commits-Only/go-app-template">Repozytorium</a></p>
-      </div>
-    </article>
-  </section>
+<section id="praca" aria-labelledby="praca-h">
+  <h2 id="praca-h">Jak pracujemy</h2>
+  <div class="grid">
+    <div class="card"><h3>Vibecoding z głową</h3><p>AI pisze kod, człowiek decyduje. Testy, review i skany pilnują, żeby do <code>main</code> trafiało tylko to, co działa.</p></div>
+    <div class="card"><h3>Huge commits only</h3><p>Jedna zmiana to jeden porządny pull request, scalany jako jeden commit.</p></div>
+    <div class="card"><h3>Self-hosted</h3><p>Raspberry Pi w domowej sieci. Bez chmury i kont, dane zostają w domu.</p></div>
+    <div class="card"><h3>Lekko</h3><p>Minimum zależności, obrazy <code>scratch</code> i distroless, kilkadziesiąt MB pamięci.</p></div>
+  </div>
+</section>
 
-  <section id="praca">
-    <h2>Jak pracujemy</h2>
-    <div class="grid">
-      <div class="card"><h3>🤖 Vibecoding z głową</h3><p>AI pisze kod, człowiek decyduje. Testy, review i skany pilnują, żeby do <code>main</code> trafiało tylko to, co działa.</p></div>
-      <div class="card"><h3>🧨 Huge commits only</h3><p>Jedna zmiana to jeden porządny pull request, scalany jako jeden commit.</p></div>
-      <div class="card"><h3>🏠 Self-hosted</h3><p>Raspberry Pi w domowej sieci. Bez chmury, bez kont, dane zostają w domu.</p></div>
-      <div class="card"><h3>⚡ Lekko</h3><p>Minimum zależności, obrazy <code>scratch</code> i distroless, kilkadziesiąt MB pamięci.</p></div>
-    </div>
-  </section>
-
-  <section id="bezpieczenstwo">
-    <h2>Bezpieczeństwo</h2>
-    <ul class="checks">
-      <li><b>Testy przy każdym PR</b>jednostkowe, fuzzing i gra w prawdziwej przeglądarce</li>
-      <li><b>Analiza kodu</b>CodeQL, govulncheck, gosec i Trivy; poważny alert blokuje merge</li>
-      <li><b>Łańcuch dostaw</b>akcje tylko z listy dozwolonych, przypięte do SHA; obrazy bazowe do skrótu</li>
-      <li><b>Podpisane artefakty</b>atestacje pochodzenia (SLSA) i SBOM dla obrazów i binarek</li>
-      <li><b>Ochrona main</b>tylko PR, wymagane testy, bez force-pusha i usuwania historii</li>
-      <li><b>Sekrety</b>secret scanning z blokadą pushy, prywatne zgłaszanie podatności</li>
-    </ul>
-    <p class="note">Znalazłeś podatność? Zgłoś ją prywatnie: <a href="https://github.com/Huge-Commits-Only/.github/blob/main/SECURITY.md">polityka bezpieczeństwa</a>.</p>
-  </section>
-</main>
-
-<footer>
-  <img src="assets/logo.svg" alt="" width="40" height="40">
-  <p>Huge Commits Only · licencja MIT · <a href="https://github.com/Huge-Commits-Only">github.com/Huge-Commits-Only</a></p>
-  <p class="dim">Ta strona nie używa JavaScriptu, ciasteczek ani śledzenia.</p>
-</footer>
-</body>
-</html>
+<section id="bezpieczenstwo" aria-labelledby="bezpieczenstwo-h">
+  <h2 id="bezpieczenstwo-h">Bezpieczeństwo</h2>
+  <ul class="checks">
+    <li><b>Testy przy każdym PR</b>jednostkowe, fuzzing i gra w prawdziwej przeglądarce</li>
+    <li><b>Analiza kodu</b>CodeQL, govulncheck, gosec i Trivy; poważny alert blokuje merge</li>
+    <li><b>Łańcuch dostaw</b>akcje tylko z listy dozwolonych, przypięte do SHA; obrazy bazowe do skrótu</li>
+    <li><b>Podpisane artefakty</b>atestacje pochodzenia (SLSA) i SBOM dla obrazów i binarek</li>
+    <li><b>Ochrona main</b>tylko pull requesty, wymagane testy, bez nadpisywania historii</li>
+    <li><b>Sekrety</b>secret scanning z blokadą pushy, prywatne zgłaszanie podatności</li>
+  </ul>
+  <p class="note">Znalazłeś podatność? Zgłoś ją prywatnie zgodnie z <a href="https://github.com/Huge-Commits-Only/.github/blob/main/SECURITY.md">polityką bezpieczeństwa</a>.</p>
+</section>

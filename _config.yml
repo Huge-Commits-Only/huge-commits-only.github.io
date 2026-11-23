@@ -1,0 +1,15 @@
+title: Huge Commits Only
+description: Aplikacje budowane z AI. Jeden pomysł, jeden porządny pull request, jeden commit na main. Self-hosted na Raspberry Pi, za darmo, z bezpieczeństwem dużych projektów open source.
+url: https://huge-commits-only.github.io
+baseurl: ""
+lang: pl
+github_org: https://github.com/Huge-Commits-Only
+roadmap: https://github.com/orgs/Huge-Commits-Only/projects/1
+plugins:
+  - jekyll-sitemap
+include:
+  - .well-known
+exclude:
+  - README.md
+  - LICENSE
+  - .github
