@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; media-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ page.title | default: site.title }}">
+<meta property="og:description" content="{{ page.description | default: site.description }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ '/assets/img/og.png' | absolute_url }}">
+<meta property="og:locale" content="pl_PL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#080912" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+<link rel="icon" href="{{ '/assets/img/logo.svg' | relative_url }}" type="image/svg+xml">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="nav">
+  <a class="brand" href="{{ '/' | relative_url }}"><img src="{{ '/assets/img/logo.svg' | relative_url }}" alt="" width="34" height="34">{{ site.title }}</a>
+  <nav aria-label="Nawigacja główna">
+    <a href="{{ '/#projekty' | relative_url }}">Projekty</a>
+    <a href="{{ '/#praca' | relative_url }}">Jak pracujemy</a>
+    <a href="{{ '/#bezpieczenstwo' | relative_url }}">Bezpieczeństwo</a>
+    <a href="{{ site.roadmap }}">Roadmapa</a>
+    <a href="{{ site.github_org }}">GitHub</a>
+  </nav>
+</header>
+<main id="tresc">
+{{ content }}
+</main>
+<footer class="foot">
+  <img src="{{ '/assets/img/logo.svg' | relative_url }}" alt="" width="40" height="40">
+  <p>{{ site.title }} · licencja MIT · <a href="{{ site.github_org }}">github.com/Huge-Commits-Only</a></p>
+  <p class="dim">Strona bez JavaScriptu, ciasteczek i śledzenia · <a href="{{ '/.well-known/security.txt' | relative_url }}">security.txt</a></p>
+</footer>
+</body>
+</html>

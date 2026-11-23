@@ -1,0 +1,48 @@
+# Projekty na stronie, w tej kolejności. Nowy projekt: dopisz wpis i wrzuć pliki do assets/projects/ (szczegóły w README.md).
+- slug: duet
+  name: Duet
+  tagline: Gry i quizy dla par
+  description: Projektor pokazuje grę, telefony są pilotami. Wejście przez kod QR, bez aplikacji i kont.
+  points:
+    - 13 trybów, od „Co wolisz” po rysowanie palcem
+    - do czterech par przy jednym ekranie
+    - jeden plik w Go, około 25 MB RAM, podpisane wydania
+  tags: [Go, HTML i CSS, Docker, Raspberry Pi]
+  icon: assets/projects/duet.svg
+  video: assets/projects/duet.mp4
+  poster: assets/projects/duet.jpg
+  width: 1040
+  height: 560
+  alt: "Natalia dołącza telefonem, wybiera tryb Co wolisz, oboje odpowiadają, a projektor pokazuje wynik"
+  accent: "#ff3d9a"
+  accent2: "#9b5cff"
+  links:
+    - label: Repozytorium
+      url: https://github.com/Huge-Commits-Only/duet
+    - label: Wydania
+      url: https://github.com/Huge-Commits-Only/duet/releases
+    - label: Zaproponuj pytanie
+      url: https://github.com/Huge-Commits-Only/duet/issues/new?template=pytanie.yml
+
+- slug: go-app-template
+  name: go-app-template
+  tagline: Szablon nowego projektu
+  description: Aplikacja w Go z testami, obraz dla Raspberry Pi i komplet CI, które przechodzi od pierwszego commita.
+  points:
+    - testy, lint, CodeQL, govulncheck i Trivy
+    - podpisane obrazy (SLSA) i SBOM
+    - Dependabot, który sam scala łatki po zielonych testach
+  tags: [Go, Docker, GitHub Actions]
+  icon: assets/projects/go-app-template.svg
+  video: assets/projects/go-app-template.mp4
+  poster: assets/projects/go-app-template.jpg
+  width: 1040
+  height: 586
+  alt: "Kroki CI szablonu od pull requestu przez testy i skany do podpisanego obrazu"
+  accent: "#00c6ff"
+  accent2: "#7f00ff"
+  links:
+    - label: Use this template
+      url: https://github.com/Huge-Commits-Only/go-app-template/generate
+    - label: Repozytorium
+      url: https://github.com/Huge-Commits-Only/go-app-template

@@ -1,0 +1,72 @@
+name: Pages
+run-name: >-
+  ${{
+      github.event_name == 'pull_request'
+      && format('Pages for CI: PR #{0} -> {1}', github.event.number, github.event.pull_request.title)
+      ||
+      format('Pages: Deploy -> {0}', github.event.head_commit.message || 'manual')
+  }}
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    name: Build & Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Git -- Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Data -- Validate projects
+        run: ruby .github/scripts/check-data.rb
+
+      - name: Jekyll -- Build
+        uses: actions/jekyll-build-pages@44a6e6beabd48582f863aeeb6cb2151cc1716697 # v1.0.13
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Site -- Check output
+        run: ruby .github/scripts/check-site.rb
+
+      # Uploaded on pull requests too, so the built site can be previewed before merging.
+      - name: Pages -- Upload artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ./_site
+
+  deploy:
+    name: Deploy
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      pages: write # publish to GitHub Pages
+      id-token: write # verify the deployment origin
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Pages -- Deploy
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
