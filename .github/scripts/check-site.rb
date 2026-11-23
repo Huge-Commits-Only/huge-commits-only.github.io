@@ -29,6 +29,9 @@ pages.each do |page|
     errors << "#{name}: #{attr}=#{ref} wskazuje nieistniejący plik" unless File.exist?(local_target(page, ref))
   end
 end
+css = File.join(SITE, "assets/css/site.css")
+# Guards against a theme stylesheet replacing ours: project accents are generated from _data/projects.yml.
+errors << "assets/css/site.css nie zawiera stylów projektów" unless File.file?(css) && File.read(css).include?(".project--")
 %w[.well-known/security.txt robots.txt sitemap.xml 404.html].each { |f| errors << "brak #{f}" unless File.file?(File.join(SITE, f)) }
 
 abort(errors.map { |e| "BŁĄD: #{e}" }.join("\n")) unless errors.empty?
