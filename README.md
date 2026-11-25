@@ -12,8 +12,8 @@ Statyczny HTML i CSS generowany przez Jekyll. Bez JavaScriptu, ciasteczek i zaso
 
    Z GIF-a w README projektu:
    ```bash
-   ffmpeg -i demo.gif -movflags +faststart -pix_fmt yuv420p -vf "scale=1040:-2" -c:v libx264 -crf 24 -an assets/projects/<slug>.mp4
-   ffmpeg -ss 5 -i demo.gif -frames:v 1 -q:v 3 assets/projects/<slug>.jpg
+   ffmpeg -i demo.gif -movflags +faststart -pix_fmt yuv420p -vf "scale=1040:-2,setsar=1" -c:v libx264 -crf 24 -an assets/projects/<slug>.mp4
+   ffmpeg -ss 5 -i demo.gif -vf setsar=1 -frames:v 1 -q:v 3 assets/projects/<slug>.jpg
    ```
 2. Dopisz wpis w [`_data/projects.yml`](_data/projects.yml), wzorując się na istniejących. Kolory `accent` i `accent2` weź z interfejsu aplikacji; `width` i `height` to wymiary wideo.
 3. Otwórz pull request. CI sprawdza wpis (wymagane pola, istniejące pliki, adresy `https://`) i zbudowaną stronę (brak skryptów, zasobów z zewnątrz i niedziałających linków). Po scaleniu strona publikuje się sama.
