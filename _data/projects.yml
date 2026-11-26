@@ -4,7 +4,7 @@
   tagline: Gry i quizy dla par
   description: Projektor pokazuje grę, telefony są pilotami. Wejście przez kod QR, bez aplikacji i kont.
   points:
-    - 13 trybów, od „Co wolisz” po rysowanie palcem
+    - 14 trybów, od „Co wolisz” po wieczór rocznicowy
     - do czterech par przy jednym ekranie
     - jeden plik w Go, około 25 MB RAM, podpisane wydania
   tags: [Go, HTML i CSS, Docker, Raspberry Pi]
